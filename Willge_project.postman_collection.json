@@ -1,0 +1,1846 @@
+{
+	"info": {
+		"_postman_id": "e10fd24a-f5e9-459a-abf5-be8a39216d15",
+		"name": "Willge_project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20375516"
+	},
+	"item": [
+		{
+			"name": "Get Crew Members",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/crew",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"crew"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a New Starship",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"enterprise_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"USS Enterprise D\");\r",
+							"    pm.expect(pm.response.json()[\"class\"]).to.eq(\"Galaxy\");\r",
+							"    pm.expect(pm.response.json()[\"mission\"]).to.eq(\"Explore Space and seek out new life and new civilizations\");\r",
+							"    const self_url = pm.environment.get(\"app_url\") + \"/starships/\" + pm.response.json()[\"id\"];\r",
+							"    pm.expect(pm.response.json()[\"self\"]).to.eq(self_url);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"USS Enterprise D\",\r\n    \"class\": \"Galaxy\",\r\n    \"mission\": \"Explore Space and seek out new life and new civilizations\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/starships",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add another new Starship",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"voyager_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"USS Voyager\");\r",
+							"    pm.expect(pm.response.json()[\"class\"]).to.eq(\"Intrepid\");\r",
+							"    pm.expect(pm.response.json()[\"mission\"]).to.eq(\"Return from the Delta Quadrant\");\r",
+							"    const self_url = pm.environment.get(\"app_url\") + \"/starships/\" + pm.response.json()[\"id\"];\r",
+							"    pm.expect(pm.response.json()[\"self\"]).to.eq(self_url);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"USS Voyager\",\r\n    \"class\": \"Intrepid\",\r\n    \"mission\": \"Return from the Delta Quadrant\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/starships",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add another Starship",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"defiant_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"USS Defiant\");\r",
+							"    pm.expect(pm.response.json()[\"class\"]).to.eq(\"Defiant\");\r",
+							"    pm.expect(pm.response.json()[\"mission\"]).to.eq(\"Protect the Federation from the Dominion\");\r",
+							"    const self_url = pm.environment.get(\"app_url\") + \"/starships/\" + pm.response.json()[\"id\"];\r",
+							"    pm.expect(pm.response.json()[\"self\"]).to.eq(self_url);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"USS Defiant\",\r\n    \"class\": \"Defiant\",\r\n    \"mission\": \"Protect the Federation from the Dominion\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/starships",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a Starship with same name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"USS Enterprise D\",\r\n    \"class\": \"Galaxy\",\r\n    \"mission\": \"Fight the Borg\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/starships",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a Starship with missing requirements",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"400 status code\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"USS Enterprise E\",\r\n    \"class\": \"Galaxy\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/starships",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a specific Starship",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"USS Defiant\");\r",
+							"    pm.expect(pm.response.json()[\"class\"]).to.eq(\"Defiant\");\r",
+							"    pm.expect(pm.response.json()[\"mission\"]).to.eq(\"Protect the Federation from the Dominion\");\r",
+							"    const self_url = pm.environment.get(\"app_url\") + \"/starships/\" + pm.response.json()[\"id\"];\r",
+							"    pm.expect(pm.response.json()[\"self\"]).to.eq(self_url);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"USS Enterprise E\",\r\n    \"class\": \"Galaxy\",\r\n    \"mission\": \"Explore Space and seek out new life and new civilizations\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/starships/{{enterprise_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships",
+						"{{enterprise_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a specific Starship",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/starships/{{defiant_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships",
+						"{{defiant_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Deleted Starship",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"404 status code\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/starships/{{defiant_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships",
+						"{{defiant_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a New Starship",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"cerritos_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"USS Cerritos\");\r",
+							"    pm.expect(pm.response.json()[\"class\"]).to.eq(\"California\");\r",
+							"    pm.expect(pm.response.json()[\"mission\"]).to.eq(\"Second Contact Engineering Support\");\r",
+							"    const self_url = pm.environment.get(\"app_url\") + \"/starships/\" + pm.response.json()[\"id\"];\r",
+							"    pm.expect(pm.response.json()[\"self\"]).to.eq(self_url);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"USS Cerritos\",\r\n    \"class\": \"California\",\r\n    \"mission\": \"Second Contact Engineering Support\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/starships",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Starships",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/starships",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Try to Delete all starships",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"405 status code\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/starships",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Starship Mission",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"USS Voyager\");\r",
+							"    pm.expect(pm.response.json()[\"class\"]).to.eq(\"Intrepid\");\r",
+							"    pm.expect(pm.response.json()[\"mission\"]).to.eq(\"Locate and retrieve space-probe Friendship 1\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mission\": \"Locate and retrieve space-probe Friendship 1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/starships/{{voyager_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships",
+						"{{voyager_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Starship Mission with invalid request tyoe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"406 status code\", function () {\r",
+							"    pm.response.to.have.status(406);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mission\": \"Locate and retrieve space-probe Friendship 1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/starships/{{voyager_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships",
+						"{{voyager_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Starship Mission with invalid content type",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"415 status code\", function () {\r",
+							"    pm.response.to.have.status(415);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "mission",
+							"value": "Be the best ship ever",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{app_url}}/starships/{{voyager_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships",
+						"{{voyager_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update all Starship properties with Put",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"name\"]).to.eq(\"USS Enterprise E\");\r",
+							"    pm.expect(pm.response.json()[\"class\"]).to.eq(\"Sovereign\");\r",
+							"    pm.expect(pm.response.json()[\"mission\"]).to.eq(\"Defeat the Borg\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"USS Enterprise E\",\r\n    \"class\": \"Sovereign\",\r\n    \"mission\": \"Defeat the Borg\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/starships/{{enterprise_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships",
+						"{{enterprise_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update all Starship properties with incorrect header type",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"406 status code\", function () {\r",
+							"    pm.response.to.have.status(406);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"USS Enterprise E\",\r\n    \"class\": \"Sovereign\",\r\n    \"mission\": \"Defeat the Borg\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/starships/{{enterprise_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships",
+						"{{enterprise_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"commander_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"title\"]).to.eq(\"First Officer\");\r",
+							"    pm.expect(pm.response.json()[\"rank\"]).to.eq(\"Commander\");\r",
+							"    pm.expect(pm.response.json()[\"duties\"]).to.eq(\"Carry out the decisions of the captain\");\r",
+							"    const self_url = pm.environment.get(\"app_url\") + \"/posts/\" + pm.response.json()[\"id\"];\r",
+							"    pm.expect(pm.response.json()[\"self\"]).to.eq(self_url);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"First Officer\",\r\n    \"rank\": \"Commander\",\r\n    \"duties\": \"Carry out the decisions of the captain\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/posts",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create another Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"captain_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"title\"]).to.eq(\"Ship Captain\");\r",
+							"    pm.expect(pm.response.json()[\"rank\"]).to.eq(\"Captain\");\r",
+							"    pm.expect(pm.response.json()[\"duties\"]).to.eq(\"Run the Starship\");\r",
+							"    const self_url = pm.environment.get(\"app_url\") + \"/posts/\" + pm.response.json()[\"id\"];\r",
+							"    pm.expect(pm.response.json()[\"self\"]).to.eq(self_url);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Ship Captain\",\r\n    \"rank\": \"Captain\",\r\n    \"duties\": \"Run the Starship\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/posts",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create another new Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"engineer_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"pm.test(\"201 status code\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"title\"]).to.eq(\"Cheif Engineer\");\r",
+							"    pm.expect(pm.response.json()[\"rank\"]).to.eq(\"Lieutenant\");\r",
+							"    pm.expect(pm.response.json()[\"duties\"]).to.eq(\"Fix the Warp Core\");\r",
+							"    const self_url = pm.environment.get(\"app_url\") + \"/posts/\" + pm.response.json()[\"id\"];\r",
+							"    pm.expect(pm.response.json()[\"self\"]).to.eq(self_url);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Cheif Engineer\",\r\n    \"rank\": \"Lieutenant\",\r\n    \"duties\": \"Fix the Warp Core\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/posts",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Posts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/posts",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a nonassigned Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/posts/{{commander_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts",
+						"{{commander_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assign a Post to a Starship",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/starships/{{voyager_id}}/posts/{{captain_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships",
+						"{{voyager_id}}",
+						"posts",
+						"{{captain_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Post from that starship",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/starships/{{voyager_id}}/posts/{{captain_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships",
+						"{{voyager_id}}",
+						"posts",
+						"{{captain_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assign Post to a different starship",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/starships/{{enterprise_id}}/posts/{{captain_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships",
+						"{{enterprise_id}}",
+						"posts",
+						"{{captain_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assign a Post to a Crew Member",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/posts/{{captain_id}}/crew/{{picard_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts",
+						"{{captain_id}}",
+						"crew",
+						"{{picard_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Post with incorrect token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{gen_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/posts/{{captain_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts",
+						"{{captain_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Post with Correct token Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"title\"]).to.eq(\"Ship Captain\");\r",
+							"    pm.expect(pm.response.json()[\"rank\"]).to.eq(\"Captain\");\r",
+							"    pm.expect(pm.response.json()[\"duties\"]).to.eq(\"Run the Starship\");\r",
+							"    pm.expect(pm.response.json()[\"crew\"][\"name\"]).to.eq('picard');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{picard_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/posts/{{captain_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts",
+						"{{captain_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Post with no token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/posts/{{captain_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts",
+						"{{captain_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Post with incorrect token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{gen_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Helmsman\",\r\n    \"rank\": \"Ensign\",\r\n    \"duties\": \"Stear th Starship\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/posts/{{captain_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts",
+						"{{captain_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Post with no token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Helmsman\",\r\n    \"rank\": \"Ensign\",\r\n    \"duties\": \"Stear th Starship\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/posts/{{captain_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts",
+						"{{captain_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Post with correct token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"title\"]).to.eq(\"Admiral\");\r",
+							"    pm.expect(pm.response.json()[\"rank\"]).to.eq(\"Admiral\");\r",
+							"    pm.expect(pm.response.json()[\"duties\"]).to.eq(\"Be in charge of Federation Ships\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{picard_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Admiral\",\r\n    \"rank\": \"Admiral\",\r\n    \"duties\": \"Be in charge of Federation Ships\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/posts/{{captain_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts",
+						"{{captain_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Post with incorrect token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{gen_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Helmsman\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/posts/{{captain_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts",
+						"{{captain_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Post with no token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Helmsman\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/posts/{{captain_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts",
+						"{{captain_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Post with correct token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    pm.expect(pm.response.json()[\"title\"]).to.eq(\"Best Captain Ever!\");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{picard_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Best Captain Ever!\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/posts/{{captain_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts",
+						"{{captain_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete With invalid token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"403 status code\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{gen_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/posts/{{captain_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts",
+						"{{captain_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete With no token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"401 status code\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/posts/{{captain_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts",
+						"{{captain_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete With correct token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{picard_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/posts/{{captain_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts",
+						"{{captain_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete the Cerritos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/starships/{{cerritos_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships",
+						"{{cerritos_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete the Voyager",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/starships/{{voyager_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships",
+						"{{voyager_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete the Enterprise",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/starships/{{enterprise_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships",
+						"{{enterprise_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete the Cheif engineer post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/posts/{{engineer_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts",
+						"{{engineer_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete the First officer post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"204 status code\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/posts/{{commander_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts",
+						"{{commander_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check to see all starships deleted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.starships.length).to.eql(0);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/starships",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"starships"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check to see all posts have been deleted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"content is valid\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.posts.length).to.eql(0);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/posts",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
