@@ -35,8 +35,8 @@ client = datastore.Client()
 app.register_blueprint(starship.bp)
 
 # Update the values of the following 3 variables
-CLIENT_ID = 'uyu8aT76NOkvQpGiF9lQrff2LHadaRZw'
-CLIENT_SECRET = '8KzybJ50_xtN9F4ZUGzsCLBP7lt9evL4Bpt8o5OCyn56B2zkrC-obbCx9l8GBIif'
+CLIENT_ID = ''
+CLIENT_SECRET = ''
 DOMAIN = '493-willge.us.auth0.com'
 LOCAL_DOMAIN = 'localhost:8080'
 
